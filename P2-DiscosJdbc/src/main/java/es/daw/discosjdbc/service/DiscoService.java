@@ -44,11 +44,8 @@ public class DiscoService {
         buscarPorCodigo(disco.getCodigo());
         prepararParaGuardar(disco);
 
-        if(discoRepository.existsByNombreIgnoreCase(disco.getNombre())){
+        if(discoRepository.existsByNombreIgnoreCaseAndCodigoNot(disco.getNombre(), disco.getCodigo())){
             throw new DiscoDuplicadoException(disco.getNombre());
-        } else if (discoRepository.existsByNombreIgnoreCaseAndCodigoNot(disco.getNombre(), disco.getCodigo())) {
-            throw new DiscoDuplicadoException(disco.getNombre());
-
         }
 
         discoRepository.update(disco);

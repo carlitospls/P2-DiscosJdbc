@@ -135,7 +135,7 @@ public class DiscoRepositoryJdbc implements DiscoRepository {
     @Override
     public boolean existsByNombreIgnoreCaseAndCodigoNot(String nombre, Integer codigo) {
 
-        String sql = "SELECT 1 FROM disco WHERE LOWER(nombre) = LOWER(?)";
+        String sql = "SELECT 1 FROM disco WHERE LOWER(nombre) = LOWER(?) AND codigo <> ?";
         try (Connection con = dataSource.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, nombre);
