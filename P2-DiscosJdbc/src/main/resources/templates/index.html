@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Inicio')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+<main class="contenedor">
+    <h1>Vinilos Sur</h1>
+    <p class="suave">Gestión del catálogo de la tienda</p>
+    <div class="tarjetas">
+        <a class="tarjeta" th:href="@{/discos}">
+            <h2>Discos</h2>
+            <p>Consulta, añade, edita o borra discos del catálogo.</p>
+        </a>
+        <a class="tarjeta" th:href="@{/generos}">
+            <h2>Géneros</h2>
+            <p>Lista de géneros del catálogo.</p>
+        </a>
+    </div>
+</main>
+</body>
+</html>

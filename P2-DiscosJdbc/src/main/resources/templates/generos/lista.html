@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Géneros')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+<main class="contenedor estrecho">
+    <h1>Géneros</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="g : ${generos}">
+            <td th:text="${g.codigo}">1</td>
+            <td th:text="${g.nombre}">Nombre</td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>
