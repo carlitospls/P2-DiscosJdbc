@@ -1,7 +1,7 @@
 package es.daw.discosjdbc.service;
 
 import es.daw.discosjdbc.exception.RecursoNoEncontradoException;
-import es.daw.discosjdbc.exception.discoDuplicadoException;
+import es.daw.discosjdbc.exception.DiscoDuplicadoException;
 import es.daw.discosjdbc.model.Genero;
 import es.daw.discosjdbc.model.Disco;
 import es.daw.discosjdbc.repository.GeneroRepository;
@@ -33,7 +33,7 @@ public class DiscoService {
         prepararParaGuardar(disco);
 
         if(discoRepository.existsByNombreIgnoreCase(disco.getNombre())){
-            throw new discoDuplicadoException(disco.getNombre());
+            throw new DiscoDuplicadoException(disco.getNombre());
         }
 
         discoRepository.save(disco);
@@ -45,7 +45,10 @@ public class DiscoService {
         prepararParaGuardar(disco);
 
         if(discoRepository.existsByNombreIgnoreCase(disco.getNombre())){
-            throw new discoDuplicadoException(disco.getNombre());
+            throw new DiscoDuplicadoException(disco.getNombre());
+        } else if (discoRepository.existsByNombreIgnoreCaseAndCodigoNot(disco.getNombre(), disco.getCodigo())) {
+            throw new DiscoDuplicadoException(disco.getNombre());
+
         }
 
         discoRepository.update(disco);

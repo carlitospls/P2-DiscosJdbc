@@ -1,7 +1,7 @@
 package es.daw.discosjdbc.controller;
 
 import es.daw.discosjdbc.dto.DiscoForm;
-import es.daw.discosjdbc.exception.discoDuplicadoException;
+import es.daw.discosjdbc.exception.DiscoDuplicadoException;
 import es.daw.discosjdbc.model.Disco;
 import es.daw.discosjdbc.service.GeneroService;
 import es.daw.discosjdbc.service.DiscoService;
@@ -66,7 +66,7 @@ public class DiscoController {
                         "Disco " + discoForm.getNombre() + " actualizado");
             }
         }
-        catch(discoDuplicadoException e){
+        catch(DiscoDuplicadoException e){
                 result.rejectValue("nombre", "", e.getMessage());
                 return "discos/formulario";
             }

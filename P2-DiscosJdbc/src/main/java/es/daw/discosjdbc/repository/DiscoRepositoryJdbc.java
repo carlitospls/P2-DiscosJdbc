@@ -125,7 +125,23 @@ public class DiscoRepositoryJdbc implements DiscoRepository {
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, nombre);
             try (ResultSet rs = ps.executeQuery()) {
-                return rs.next(); // TRUE si encuentra el fabricante con ese nombre...
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            throw new AccesoDatosException("Error al comprobar el nombre del disco: " + nombre, e);
+        }
+    }
+
+    @Override
+    public boolean existsByNombreIgnoreCaseAndCodigoNot(String nombre, Integer codigo) {
+
+        String sql = "SELECT 1 FROM disco WHERE LOWER(nombre) = LOWER(?)";
+        try (Connection con = dataSource.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, nombre);
+            ps.setInt(2, codigo);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
             }
         } catch (SQLException e) {
             throw new AccesoDatosException("Error al comprobar el nombre del disco: " + nombre, e);

@@ -9,4 +9,7 @@ public interface DiscoRepository extends GenericRepository<Disco, Integer> {
     boolean existsByGeneroCodigo(Integer codigoGenero);
 
     boolean existsByNombreIgnoreCase(String nombre);
+
+    boolean existsByNombreIgnoreCaseAndCodigoNot(String nombre, Integer codigo);
+
 }
