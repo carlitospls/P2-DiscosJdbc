@@ -68,7 +68,8 @@ public class DiscoController {
         }
         catch(DiscoDuplicadoException e){
                 result.rejectValue("nombre", "", e.getMessage());
-                return "discos/formulario";
+            model.addAttribute("generos", generoService.listar());
+            return "discos/formulario";
             }
             return "redirect:/discos";
         }
